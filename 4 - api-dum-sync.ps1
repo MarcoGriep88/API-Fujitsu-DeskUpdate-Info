@@ -1,20 +1,11 @@
 /*
-  RUN THIS SCRIPT WITH ADMIN PRIVILEGES ON EACH FUJITSU COMPUTER
-  TO GET INFORMATION, WHAT DRIVER UPDATES ARE AVAILABLE AND TO
-  REPORT THEM TO THE API. YOU NEED FUJITSU DESKUPDATE MANAGER INSTALLED
+	RUN THIS SCRIPT ON EACH WINDOWS FUJITSU COMPUTER WITH ADMIN PRIVILEGES (GPO, LANSWEEPER ETC)
+	THIS WILL IDENTIFY THE POSSIBLE DRIVER UPDATES FOR THIS MACHINE AND REPORT THEM TO
+	THE API-FUJITSU-DESKUDATE SERVER (YOU NEED FUJITSU DESKUPDATE MANAGER INSTALLED)
 */
 
 param( 
-    [Parameter(Mandatory=$true,
-            Position=0,
-            ParameterSetName="DeskUpdate Path",
-            ValueFromPipeline=$true,
-            ValueFromPipelineByPropertyName=$true,
-            HelpMessage="Path to location of Ducmd.exe")]
-    [Alias("PSPath")]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $DeskUpdate
+    [string]$DeskUpdate = "\\server.intranet.int\DriverDepot$\Projects\DeskupUpdate-2020-02\DeskUpdate\ducmd.exe"
 )
 
 class DUMInfo {
@@ -23,8 +14,7 @@ class DUMInfo {
     [string]$UpgradeVersion
 }
 
-$apiServer = "https://apiserver.intranet.int"
-
+$apiServer = "https://apiServer.intranet.int"
 $hostname = & hostname
 $Driver=""
 $Version=""
