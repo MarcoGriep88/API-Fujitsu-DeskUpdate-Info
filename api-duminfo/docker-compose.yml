@@ -1,0 +1,22 @@
+version: '2'
+services:
+    mysql:
+        image: mysql:5.7
+        container_name: db-patchmanagement-duminfo-mysql-001
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: Ramda8xun7dx3m89087x89d7s8a7
+          MYSQL_DATABASE: db_duminfo
+          MYSQL_USER: db_duminfo
+          MYSQL_PASSWORD: db_duminfo28r792347cr589 
+        volumes:
+          - ./storage/mysql:/var/lib/mysql
+    web:
+         build: ./web
+         container_name: api-patchmanagement-duminfo-lumen-001
+         ports:
+             - 10100:80
+         volumes:
+             - ./web:/var/www
+             - ./storage/app:/var/www/storage/app
+             - ./storage/logs:/var/www/storage/logs
