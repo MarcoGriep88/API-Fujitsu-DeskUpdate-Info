@@ -13,10 +13,14 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+
+$router->get('/version', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('/ping', function () use ($router) {
+    return response()->json(['message' => 'ok'], 200);
+});
 $router->get('/', 'Controller@index');
 $router->post('/create', 'Controller@create');
 $router->post('/clear', 'Controller@clear');
