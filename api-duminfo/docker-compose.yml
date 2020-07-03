@@ -14,7 +14,7 @@ services:
     web:
          build: ./web
          container_name: api-patchmanagement-duminfo-lumen-001
-	 restart: always
+	       restart: always
          ports:
              - 10100:80
          volumes:
